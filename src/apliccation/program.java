@@ -1,7 +1,5 @@
 package apliccation;
 
-import boardgame.board;
-import boardgame.position;
 import chess.chessMatch;
 
 public class program {
