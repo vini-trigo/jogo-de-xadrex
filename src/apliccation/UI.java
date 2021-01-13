@@ -35,8 +35,8 @@ public class UI {
 	public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
-	} 
-	
+	}
+
 	public static Chessposition readChessPosition(Scanner sc) {
 		try {
 			String s = sc.nextLine();
@@ -47,17 +47,22 @@ public class UI {
 			throw new InputMismatchException("Erro ao ler a posição de xadrez, valor valido somente de a1 a a8.");
 		}
 	}
-	
+
 	public static void printMatch(chessMatch cmath, List<ChessPiece> cap) {
 		printBoard(cmath.getPieces());
 		System.out.println();
 		printCapturePieces(cap);
 		System.out.println();
 		System.out.println("Turn: " + cmath.getTurn());
-		System.out.println("Wating Player " + cmath.getCurrentPlayer());
-		
-		if(cmath.getCheck()) {
-			System.out.println("CHECK!");
+		if (!cmath.getCheckMate()) {
+			System.out.println("Wating Player " + cmath.getCurrentPlayer());
+			if (cmath.getCheck()) {
+				System.out.println("CHECK!");
+			}
+		}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println("Winner: "+cmath.getCurrentPlayer());
 		}
 	}
 
@@ -71,7 +76,7 @@ public class UI {
 		}
 		System.out.println("  a b c d e f g h");
 	}
-	
+
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] pmovies) {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -84,7 +89,7 @@ public class UI {
 	}
 
 	private static void printPiece(ChessPiece piece, boolean background) {
-		if(background) {
+		if (background) {
 			System.out.print(ANSI_BLUE_BACKGROUND);
 		}
 		if (piece == null) {
@@ -98,7 +103,7 @@ public class UI {
 		}
 		System.out.print(" ");
 	}
-	
+
 	private static void printCapturePieces(List<ChessPiece> cap) {
 		List<ChessPiece> white = cap.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
 		List<ChessPiece> black = cap.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
@@ -111,6 +116,6 @@ public class UI {
 		System.out.println(ANSI_YELLOW);
 		System.out.println(Arrays.toString(black.toArray()));
 		System.out.println(ANSI_RESET);
-		
+
 	}
 }
