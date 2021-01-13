@@ -6,6 +6,7 @@ import java.util.Scanner;
 import chess.ChessPiece;
 import chess.Chessposition;
 import chess.Color;
+import chess.chessMatch;
 
 public class UI {
 
@@ -42,6 +43,13 @@ public class UI {
 		} catch (RuntimeException d) {
 			throw new InputMismatchException("Erro ao ler a posição de xadrez, valor valido somente de a1 a a8.");
 		}
+	}
+	
+	public static void printMatch(chessMatch cmath) {
+		printBoard(cmath.getPieces());
+		System.out.println();
+		System.out.println("Turn: " + cmath.getTurn());
+		System.out.println("Wating Player " + cmath.getCurrentPlayer());
 	}
 
 	public static void printBoard(ChessPiece[][] pieces) {
