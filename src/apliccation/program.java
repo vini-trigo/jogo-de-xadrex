@@ -1,6 +1,8 @@
 package apliccation;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import chess.ChessPiece;
@@ -14,13 +16,13 @@ public class program {
 		// TODO Auto-generated method stub
 
 		Scanner sc = new Scanner(System.in);
-		
 		chessMatch f = new chessMatch();
+		List<ChessPiece> cap = new ArrayList<>();
 		
 		while (true) {
 			try {
 				UI.clearScreen();	
-				UI.printMatch(f);
+				UI.printMatch(f, cap);
 				System.out.println();
 				System.out.println("Source: ");
 				Chessposition source = UI.readChessPosition(sc);
@@ -34,6 +36,10 @@ public class program {
 				Chessposition target = UI.readChessPosition(sc);
 				
 				ChessPiece capturedPiece = f.performChessMove(source, target);
+				
+				if(capturedPiece != null) {
+					cap.add(capturedPiece);
+				}
 			}	
 			catch(chessException d) {
 				System.out.println(d.getMessage());
