@@ -55,6 +55,10 @@ public class UI {
 		System.out.println();
 		System.out.println("Turn: " + cmath.getTurn());
 		System.out.println("Wating Player " + cmath.getCurrentPlayer());
+		
+		if(cmath.getCheck()) {
+			System.out.println("CHECK!");
+		}
 	}
 
 	public static void printBoard(ChessPiece[][] pieces) {
