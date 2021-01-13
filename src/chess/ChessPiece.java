@@ -1,6 +1,7 @@
 package chess;
 
 import boardgame.piece;
+import boardgame.position;
 
 public abstract class ChessPiece extends piece{
 
@@ -15,6 +16,9 @@ public abstract class ChessPiece extends piece{
 		return color;
 	}
 
-	
+	protected boolean isThereAnyPossibleMove(position p) {
+		ChessPiece ps = (ChessPiece)getBoard().piece(p);
+		return ps != null && ps.getColor() != color; 
+	}
 	
 }

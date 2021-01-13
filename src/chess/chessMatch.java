@@ -29,10 +29,11 @@ public class chessMatch {
 		position source = sourcePosition.toPosition();
 		position target = targetPosition.toPosition();
 		validateSourceposition(source);
+		validateTargetPosition(source, target);
 		piece capturedPiece = makeMov(source, target);
 		return (ChessPiece)capturedPiece;
 	}
-	
+
 	private piece makeMov(position source, position target) {
 		piece p = board.removePiece(source);
 		piece captuPiece = board.removePiece(target);
@@ -49,6 +50,13 @@ public class chessMatch {
 		}
 	}
 
+	private void validateTargetPosition(position source, position target) {
+		// TODO Auto-generated method stub
+		if(!board.piece(source).possibleMoves(target)) {
+			throw new chessException("A pessa escolhida nao pode mover para a posição escolhida");
+		}
+	}
+	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new Chessposition(column, row).toPosition());
 	}
