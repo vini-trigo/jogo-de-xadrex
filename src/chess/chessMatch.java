@@ -40,9 +40,12 @@ public class chessMatch {
 		return captuPiece;
 	}
 
-	private void validateSourceposition(position source) {
-		if(!board.thereisAPice(source)) {
+	private void validateSourceposition(position piece) {
+		if(!board.thereisAPice(piece)) {
 			throw new chessException("There is not piece on source position");
+		}
+		if(!board.piece(piece).IsThereAnyPossibleMove()) {
+			throw new chessException("There is not possible moves for the chosen piece.");
 		}
 	}
 
