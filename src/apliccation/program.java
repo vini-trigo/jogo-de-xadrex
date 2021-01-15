@@ -40,6 +40,11 @@ public class program {
 				if(capturedPiece != null) {
 					cap.add(capturedPiece);
 				}
+				if(f.getPromoted() != null) {
+					System.out.println("Digite a peça que voce quer adicionar (B/N/R/Q)");
+					String type = sc.nextLine();
+					f.replacePromoted(type);
+				}
 			}	
 			catch(chessException d) {
 				System.out.println(d.getMessage());
