@@ -42,7 +42,13 @@ public class program {
 				}
 				if(f.getPromoted() != null) {
 					System.out.println("Digite a peça que voce quer adicionar (B/N/R/Q)");
-					String type = sc.nextLine();
+					String type = sc.nextLine().toUpperCase();
+					
+					while(!type.equals("B") && type.equals("M") && type.equals("H") && type.equals("Q")) {
+						System.out.println("Valor invalido, digite a peca que voce quer adicionar (B/N/H/Q)");
+						type = sc.nextLine().toUpperCase();
+					}
+					
 					f.replacePromoted(type);
 				}
 			}	
